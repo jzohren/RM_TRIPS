@@ -23,7 +23,8 @@ library(seqinr)
 read_rm1 <- function(file) {
   rm_file <- readr::read_lines(file = file, skip = 2) ##### changed from skip = 3 as this removed the first entry
   rm_file <- lapply(rm_file, function(x) {
-    str.res <- unlist(stringr::str_split(x, "\\s+"))[-1]
+    str.res <- unlist(stringr::str_trim(x))
+    str.res <- unlist(stringr::str_split(str.res, "\\s+"))
     str.res <- str.res[1:14]
     return(str.res)
   })
